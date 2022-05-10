@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-azuredisk
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: managed-csi
+  csi:
+    driver: disk.csi.azure.com
+    readOnly: false
+    volumeHandle: /subscriptions/YOUR_SUBSCRIPTIONS_ID/resourcegroups/YOUR_RESOUCE_GROUP_NAME/providers/Microsoft.Compute/disks/pvc-mng-p-01-westus2-mig
+    volumeAttributes:
+      fsType: ext4
